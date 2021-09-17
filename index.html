@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <title>Contacts!</title>
+    <!-- the bootstrap css -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
+    <!-- the jquery library -->
+    <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+    <!-- the knockout library -->
+    <script type="text/javascript" src="js/knockout-3.5.1.js"></script>
+    <!-- the fontawesome library -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- the bootstrap js -->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <!-- module for our application -->
+    <script type="text/javascript" src="js/addressbook.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="page-header">
+            <h1>Contacts</h1>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-danger btn-sm" id="editContact" data-bs-toggle="modal" data-bs-target="#contactForm">Edit Contact</button>
+          <button class="btn btn-primary btn-sm" id="newContact" data-bs-toggle="modal" data-bs-target="#contactForm" style="float: right;">Create New Contact</button>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <table id="contactTable" data-search="true" data-single-select="true" data-click-to-select="true">
+          <thead>
+            <tr>
+              <th data-field="state" data-checkbox="true"></th>
+              <th data-field="id" data-visible="false">ID</th>
+              <th data-field="firstname" data-sortable="true">First Name</th>
+              <th data-field="lastname" data-sortable="true">Last Name</th>
+              <th data-field="address">Address</th>
+              <th data-field="city" data-sortable="true">City</th>
+              <th data-field="state" data-sortable="true">State</th>
+              <th data-field="zipcode">Zip Code</th>
+              <th data-field="phone">Phone Number</th>
+              <th data-field="email">Email Address</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <!-- <div class="col-md-9">
+        <table 
+          class="table table-striped table-hover" 
+          id="table" 
+          data-toggle="table" 
+          data-search-align="left" 
+          data-search="true"
+          data-single-select="true"
+          data-click-to-select="true">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip Code</th>
+              <th>Phone Number</th>
+              <th>Email Address</th>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: AddressBook.contacts">
+            <tr>
+              <td data-bind="text: firstname"></td>
+              <td data-bind="text: lastname"></td>
+              <td data-bind="text: address"></td>
+              <td data-bind="text: city"></td>
+              <td data-bind="text: state"></td>
+              <td data-bind="text: zipcode"></td>
+              <td data-bind="text: phone"></td>
+              <td data-bind="text: email"></td>
+            </tr>
+          </tbody>
+        </table>
+    </div> -->
+
+    <div class="modal" id="contactForm" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create New Contact</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-3">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" id="firstName" data-bind="value: AddressBook.contact.firstname" required/>
+          
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" id="lastName" data-bind="value: AddressBook.contact.lastname"/>
+          
+              <label for="address" class="form-label">Address</label>
+              <input type="text" id="address" data-bind="value: AddressBook.contact.address"/>
+          
+              <label for="city" class="form-label">City</label>
+              <input type="text" id="city" data-bind="value: AddressBook.contact.city"/>
+          
+              <div class="col-md-12">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" id="state" data-bind="value: AddressBook.contact.state">
+                  <option value="">Choose...</option>
+                  <option>AZ</option>
+                  <option>IL</option>
+                  <option>NC</option>
+                </select> 
+              </div>
+          
+              <div class="col-md-4">
+                <label for="zipcode" class="form-label">Zip</label>
+                <input type="number" maxlength="5" id="zipcode" data-bind="value: AddressBook.contact.zipcode"/>
+              </div>
+              
+              <div>
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" id="phone" data-bind="value: AddressBook.contact.phone"/>
+              </div>
+          
+              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" id="email" data-bind="value: AddressBook.contact.email"/>
+          
+            </div> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bind="click: AddressBook.addContact" data-bs-dismiss="modal" id="saveContact">Save Contact</button>
+            <button type="button" class="btn btn-success" data-bind="click: AddressBook.updateContact" data-bs-dismiss="modal" id="updateContact">Update Contact</button>
+            <button type="button" class="btn btn-danger" data-bind="click: AddressBook.deleteContact" data-bs-dismiss="modal" id="deleteContact">Delete Contact</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
