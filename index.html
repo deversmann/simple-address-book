@@ -18,6 +18,9 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
     <!-- module for our application -->
     <script type="text/javascript" src="js/addressbook.js"></script>
+    <script type="text/javascript" src="js/addressbook.config.js"></script>
+    <script type="text/javascript" src="js/addressbook.data.js"></script>
+    <script type="text/javascript" src="js/addressbook.data.utilities.js"></script>
   </head>
   <body>
     <div class="container">
@@ -96,20 +99,20 @@
           <div class="modal-body">
             <div class="col-md-3">
               <label for="firstName" class="form-label">First name</label>
-              <input type="text" id="firstName" data-bind="value: AddressBook.contact.firstname" required/>
+              <input type="text" id="firstName" data-bind="value: AddressBook.data.contact.firstname" required/>
           
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" id="lastName" data-bind="value: AddressBook.contact.lastname"/>
+              <input type="text" id="lastName" data-bind="value: AddressBook.data.contact.lastname"/>
           
               <label for="address" class="form-label">Address</label>
-              <input type="text" id="address" data-bind="value: AddressBook.contact.address"/>
+              <input type="text" id="address" data-bind="value: AddressBook.data.contact.address"/>
           
               <label for="city" class="form-label">City</label>
-              <input type="text" id="city" data-bind="value: AddressBook.contact.city"/>
+              <input type="text" id="city" data-bind="value: AddressBook.data.contact.city"/>
           
               <div class="col-md-12">
                 <label for="state" class="form-label">State</label>
-                <select class="form-select" id="state" data-bind="value: AddressBook.contact.state">
+                <select class="form-select" id="state" data-bind="value: AddressBook.data.contact.state">
                   <option value="">Choose...</option>
                   <option>AZ</option>
                   <option>IL</option>
@@ -119,24 +122,24 @@
           
               <div class="col-md-4">
                 <label for="zipcode" class="form-label">Zip</label>
-                <input type="number" maxlength="5" id="zipcode" data-bind="value: AddressBook.contact.zipcode"/>
+                <input type="number" maxlength="5" id="zipcode" data-bind="value: AddressBook.data.contact.zipcode"/>
               </div>
               
               <div>
                 <label for="phone" class="form-label">Phone</label>
-                <input type="text" id="phone" data-bind="value: AddressBook.contact.phone"/>
+                <input type="text" id="phone" data-bind="value: AddressBook.data.contact.phone"/>
               </div>
           
               <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" id="email" data-bind="value: AddressBook.contact.email"/>
+              <input type="email" id="email" data-bind="value: AddressBook.data.contact.email"/>
           
             </div> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-bind="click: AddressBook.addContact" data-bs-dismiss="modal" id="saveContact">Save Contact</button>
-            <button type="button" class="btn btn-success" data-bind="click: AddressBook.updateContact" data-bs-dismiss="modal" id="updateContact">Update Contact</button>
-            <button type="button" class="btn btn-danger" data-bind="click: AddressBook.deleteContact" data-bs-dismiss="modal" id="deleteContact">Delete Contact</button>
+            <button type="button" class="btn btn-primary" data-bind="click: AddressBook.data.utilities.add" data-bs-dismiss="modal" id="saveContact">Save Contact</button>
+            <button type="button" class="btn btn-success" data-bind="click: AddressBook.data.utilities.update" data-bs-dismiss="modal" id="updateContact">Update Contact</button>
+            <button type="button" class="btn btn-danger" data-bind="click: AddressBook.data.utilities.delete" data-bs-dismiss="modal" id="deleteContact">Delete Contact</button>
 
           </div>
         </div>
