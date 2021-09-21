@@ -5,7 +5,7 @@ AddressBook.config = function() {
   // configure these for your env or use Ansible and overwrite this with a template
   protocol = 'http',
   hostname = 'localhost',
-  port = '8080',
+  port = '8081',
   base = 'api',
   apiVersion = 'v1',
   contactsPath = 'contacts',
@@ -14,7 +14,7 @@ AddressBook.config = function() {
   contactsUrl = `http://${ hostname }:${ port }/${ base }/${ apiVersion }/${ contactsPath }`,
   contactUrl = function(id) {
     return `http://${ hostname }:${ port }/${ base }/${ apiVersion }/${ contactsPath }/${ id }`
-  }
+  };
 
   return {
     contactsUrl: contactsUrl,
