@@ -1,9 +1,9 @@
 /* Module for Address Book application */
 var AddressBook = function () {
+  var config, init;
 
 
-
-  var init = function () {
+  init = function () {
     ko.applyBindings(AddressBook.data);
     AddressBook.data.utilities.getContacts()
     .then((res) => {
@@ -22,10 +22,23 @@ var AddressBook = function () {
   };
 
   /* execute the init function when the DOM is ready */
-  $(init);
+  document.addEventListener('DOMContentLoaded', async () => {
+    console.log("DOM is ready");
+    let response = await fetch('config.default.json');
+    let data = await response.json();
+    AddressBook.config = new AddressBook.Config(data);
+    init();
+  })
+  // $( document ).ready(async () => {
+  //   console.log("DOM is ready");
+  //   let data = await $.get('config.default.json')
+  //   config = new AddressBook.config(response);
+  //   console.log(config);
+  // });
   
   return {
     /* add members that will be exposed publicly */
-    init: init
+    init: init,
+    config: config
   };
 }();
