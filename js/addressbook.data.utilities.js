@@ -1,16 +1,17 @@
 AddressBook.data.utilities = function() {
   // declare variables
-  var createContact, addContact, getContacts, updateContact, removeContact;
+  var createContact, addContact, getContacts, updateContact, removeContact, initConfig, setConfig;
 
   // module methods
   createContact = function() {
     return new Promise((resolve, reject) => {
       let data = ko.toJSON(AddressBook.data.contact);
 // need to figure out how to update the contacts array and then refresh
-      $.post(AddressBook.config.contactsUrl, data)
+      $.post(AddressBook.config.contactsUrl(), data)
         .done((response) => {
           // add the contact to the contacts array 
           AddressBook.data.contacts.push({
+            id: response.id,
             firstname: AddressBook.data.contact.firstname(), 
             lastname: AddressBook.data.contact.lastname(),
             address: AddressBook.data.contact.address(),
@@ -47,8 +48,10 @@ AddressBook.data.utilities = function() {
 
   getContacts = function() {
     return new Promise((resolve, reject) => {
-      $.get(AddressBook.config.contactsUrl)
+      console.log(AddressBook.config.contactsUrl());
+      $.get(AddressBook.config.contactsUrl())
         .done((response) => {
+          console.log(response);
           response.contacts.forEach((element, index, array) => {
             AddressBook.data.contacts.push({
               id: element.id,
