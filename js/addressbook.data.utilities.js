@@ -12,14 +12,14 @@ AddressBook.data.utilities = function() {
           // add the contact to the contacts array 
           AddressBook.data.contacts.push({
             id: response.id,
-            firstname: AddressBook.data.contact.firstname(), 
-            lastname: AddressBook.data.contact.lastname(),
-            address: AddressBook.data.contact.address(),
-            city: AddressBook.data.contact.city(),
-            state: AddressBook.data.contact.state(),
-            zipcode: AddressBook.data.contact.zipcode(),
-            phone: AddressBook.data.contact.phone(),
-            email: AddressBook.data.contact.email()
+            firstname: response.firstname, 
+            lastname: response.lastname,
+            address: response.address,
+            city: response.city,
+            state: response.state,
+            zipcode: response.zipcode,
+            phone: response.phone,
+            email: response.email
         });
           return resolve(response)
         })
@@ -78,14 +78,14 @@ AddressBook.data.utilities = function() {
       let data = ko.toJSON(AddressBook.data.contact);
 
       $.ajax({
-        url: AddressBook.config.contactUrl(AddressBook.data.contact.id),
+        url: AddressBook.config.contactUrl(AddressBook.data.contact.id()),
         type: 'PUT',
         dataType: 'json',
         data: data
       })
       .done((response) => {
         let updatedContact = ko.utils.arrayFirst(AddressBook.data.contacts(), function(currentContact) {
-          return currentContact.id == AddressBook.data.contact.id;
+          return currentContact.id == AddressBook.data.contact.id();
         });
         if (updatedContact) {
           console.log(updatedContact);

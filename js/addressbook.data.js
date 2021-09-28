@@ -17,7 +17,7 @@ AddressBook.data = function() {
   contacts = ko.observableArray();
 
   clearContact = function() {
-    id = ko.observable(null);
+    contact.id(null);
     contact.firstname(null);
     contact.lastname(null);
     contact.address(null);
@@ -50,8 +50,8 @@ AddressBook.data = function() {
           .state(row.state)
           .zipcode(row.zipcode)
           .phone(row.phone)
-          .email(row.email);
-        contact.id = row.id;
+          .email(row.email)
+          .id(row.id);
         console.log(contact);
         // a ballet of hiding and showing the right buttons for the time
         $('#editContact').show();
@@ -82,6 +82,7 @@ AddressBook.data = function() {
   };
 
   clearContact = function() {
+    contact.id(null);
     contact.firstname(null);
     contact.lastname(null);
     contact.address(null);
