@@ -4,11 +4,11 @@ var AddressBook = function () {
 
 
   init = function () {
-    ko.applyBindings(AddressBook.data);
     AddressBook.data.utilities.getContacts()
     .then((res) => {
       console.log(res);
       AddressBook.data.initContactTable();
+      
     })
     .catch((err) => {
       console.log(err);
