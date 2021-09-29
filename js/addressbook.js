@@ -8,7 +8,7 @@ var AddressBook = function () {
     .then((res) => {
       console.log(res);
       AddressBook.data.initContactTable();
-      
+      ko.applyBindings(AddressBook.config);
     })
     .catch((err) => {
       console.log(err);
