@@ -31,7 +31,7 @@ podman run -d --rm \
   -e SAB_PROTOCOL="http" \
   -e SAB_HOSTNAME="192.0.2.42" \
   -e SAB_PORT=8090 \
-  -p 8080:80 --name goaddr localhost/goaddr
+  -p 8080:80 --name sab localhost/sab
 ```
 
 The `Containerfile` builds a container with Apache running on port 80 and the app files in the root html directory.  It will overwrite the config file at runtime with the values contained in the following environment vars:
